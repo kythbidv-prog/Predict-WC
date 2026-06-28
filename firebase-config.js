@@ -1,5 +1,3 @@
-// Dán Firebase Web App config thật của bạn vào đây.
-// Project settings > Your apps > Web app > firebaseConfig.
 export const firebaseConfig = {
   apiKey: "AIzaSyAG_WRfmW0kWZivaPCvbqEFwmvFHMs55ZQ",
   authDomain: "worldcup2026-168f1.firebaseapp.com",
