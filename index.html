@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>World Cup Predictor</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="ball">WC</div><div><h1>World Cup Predictor</h1><p>Dự đoán vui nội bộ - không cá cược tiền thật</p></div></div>
+  <div class="top-actions"><span id="userLabel">Chưa đăng nhập</span><button id="logoutBtn" class="btn ghost hidden">Đăng xuất</button></div>
+</header>
+<section class="hero">
+  <div><span class="live">● LIVE PREDICTION CENTER</span><h2>Dự đoán World Cup 2026</h2><p>Đăng nhập, nhập tỷ số dự đoán, xem kết quả đã qua và bảng xếp hạng realtime.</p></div>
+  <div class="score-rule"><small>Luật điểm</small><strong>5 / 3 / 0</strong><span>Đúng tỷ số / đúng kết quả / sai</span></div>
+</section>
+<main class="app">
+  <aside class="login-card" id="loginCard">
+    <h3>Đăng nhập</h3>
+    <p class="muted">Admin mặc định: tên <b>admin</b>. Tạo user admin trước, mật khẩu tùy anh đặt.</p>
+    <label>Tên đăng nhập</label><input id="username" placeholder="Ví dụ: admin hoặc kytran" />
+    <label>Mật khẩu</label><input id="password" type="password" placeholder="Tối thiểu 6 ký tự" />
+    <div class="row"><button id="loginBtn" class="btn">Đăng nhập</button><button id="signupBtn" class="btn secondary">Tạo user</button></div>
+    <div class="demo-note" id="modeNote"></div>
+  </aside>
+  <section class="main-panel">
+    <nav class="tabs">
+      <button class="tab active" data-tab="matches">Lịch & dự đoán</button>
+      <button class="tab" data-tab="ranking">Bảng xếp hạng</button>
+      <button class="tab hidden" id="adminTabBtn" data-tab="admin">Quản trị</button>
+    </nav>
+    <section id="matchesTab" class="tabpage active">
+      <div class="section-head"><div><h3>Lịch thi đấu</h3><p class="muted">Trận đã đá xem được kết quả; trận chưa đá mở dự đoán.</p></div><div class="filters"><button class="filter active" data-filter="all">Tất cả</button><button class="filter" data-filter="open">Đang mở</button><button class="filter" data-filter="finished">Đã có KQ</button></div></div>
+      <div id="matchesList" class="match-list"><div class="empty">Đang tải lịch thi đấu...</div></div>
+    </section>
+    <section id="rankingTab" class="tabpage">
+      <div class="section-head"><div><h3>Bảng xếp hạng</h3><p class="muted">Tự cộng điểm khi có kết quả.</p></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Hạng</th><th>Người chơi</th><th>Tổng điểm</th><th>Đúng tỷ số</th><th>Đúng kết quả</th><th>Số dự đoán</th></tr></thead><tbody id="rankingBody"></tbody></table></div>
+    </section>
+    <section id="adminTab" class="tabpage">
+      <div class="section-head"><div><h3>Quản trị</h3><p class="muted">Admin có thể nạp/sửa lịch, nhập kết quả, khóa/mở dự đoán.</p></div><div class="row"><button id="seedBtn" class="btn">Nạp 88 trận</button><button id="clearMatchesBtn" class="btn ghost">Xóa lịch</button></div></div>
+      <form id="matchForm" class="admin-form">
+        <input id="matchId" type="hidden" />
+        <div class="grid three"><div><label>Giai đoạn</label><input id="stage"/></div><div><label>Giờ đá</label><input id="kickoff" type="datetime-local"/></div><div><label>Trạng thái</label><select id="status"><option value="scheduled">Chưa đá</option><option value="live">Đang đá</option><option value="finished">Đã kết thúc</option></select></div></div>
+        <div class="grid two"><div><label>Đội 1</label><input id="teamA"/></div><div><label>Đội 2</label><input id="teamB"/></div></div>
+        <div class="grid four"><div><label>Tỷ số đội 1</label><input id="scoreA" type="number" min="0"/></div><div><label>Tỷ số đội 2</label><input id="scoreB" type="number" min="0"/></div><div><label>Pen đội 1</label><input id="penA" type="number" min="0"/></div><div><label>Pen đội 2</label><input id="penB" type="number" min="0"/></div></div>
+        <div class="grid five"><div><label>Odds 1</label><input id="oddA" type="number" step="0.01"/></div><div><label>Odds X</label><input id="oddX" type="number" step="0.01"/></div><div><label>Odds 2</label><input id="oddB" type="number" step="0.01"/></div><div><label>Châu Á</label><input id="handicap"/></div><div><label>Tài/Xỉu</label><input id="total"/></div></div>
+        <label class="checkbox"><input id="locked" type="checkbox"/> Khóa dự đoán</label>
+        <div class="row"><button class="btn" type="submit">Lưu trận</button><button class="btn secondary" type="button" id="clearFormBtn">Tạo trận mới</button></div>
+      </form>
+      <div id="adminList" class="admin-list"></div>
+    </section>
+  </section>
+</main>
+<footer>Website dự đoán vui nội bộ. Không thanh toán, không cá cược tiền thật.</footer>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
